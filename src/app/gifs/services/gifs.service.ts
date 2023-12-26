@@ -41,7 +41,10 @@ export class GifsService {
 
     this._tagsHistory = JSON.parse(localStorage.getItem('history')!);
 
-    if (this._tagsHistory.length === 0) return;      this.searchTag(this._tagsHistory[0]);
+    if (this._tagsHistory.length === 0){
+     this.searchTag('welcome');
+    }
+    this.searchTag(this._tagsHistory[0]);
 
   }
 
@@ -61,6 +64,16 @@ export class GifsService {
     /*    fetch('https://api.giphy.com/v1/gifs/search?api_key=YhXP0pycHmMktHeOUmoPBvaEWo8EMQsK&q=valorant&limit =10')
           .then(resp => resp.json())
           .then(data => console.log(data))*/
+  }
+
+  deleteTag(tag:string):void{
+    this._tagsHistory = this._tagsHistory.filter(oldTag => oldTag !== tag);
+    this.safeLocalStorage();
+  }
+
+  deleteAllTags():void{
+    this._tagsHistory = [];
+    this.safeLocalStorage();
   }
 }
 

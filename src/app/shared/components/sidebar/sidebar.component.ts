@@ -16,4 +16,12 @@ export class SidebarComponent {
   search(tag:string):void{
     this.giftService.searchTag(tag);
   }
+
+  delete(tag:string):void{
+    this.giftService.deleteTag(tag);
+  }
+
+  deleteAll():void{
+    this.giftService.deleteAllTags();
+  }
 }
